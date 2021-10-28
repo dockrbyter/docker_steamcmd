@@ -5,5 +5,5 @@
 ## Tags
 
 *   [`latest`](dockerfiles/ubuntu-20/Dockerfile)
-*   [`windows-core-2019`, `windows-core`](dockerfiles/windows-core-2019/Dockerfile)
+
 
