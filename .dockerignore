@@ -1,7 +1,0 @@
-# Repository files
-.git
-.github
-
-# Build files
-dockerfiles/
-goss.yaml
