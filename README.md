@@ -4,6 +4,6 @@
 
 ## Tags
 
-*   [`latest`](dockerfiles/ubuntu-20/Dockerfile)
+*   [`latest`](dockerfiles/ubuntu-20/Dockerfile) [Ubuntu 20.04]
 
 
