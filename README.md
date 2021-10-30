@@ -1,4 +1,6 @@
 # SteamCMD Docker Image
+[![Docker Pulls](https://img.shields.io/docker/pulls/dockrbyter/steamcmd.svg)](https://hub.docker.com/r/dockrbyter/steamcmd)
+[![Image Size](https://img.shields.io/docker/image-size/dockrbyter/steamcmd.svg)](https://hub.docker.com/r/dockrbyter/steamcmd)
 Forked from: https://github.com/steamcmd/docker
 
 ## Tags
