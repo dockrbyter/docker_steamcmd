@@ -12,12 +12,15 @@
 https://hub.docker.com/r/dockrbyter/steamcmd
 docker pull dockrbyter/steamcmd
 
-```
+
 ## Container Infos
 ### Ubuntu
+```
 Default-User: steam
 Working-Direktory: /home/steam/server
+```
 
 ### Windows
+```
 (unpushed - coming soon)
 ```
