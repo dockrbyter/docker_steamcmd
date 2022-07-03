@@ -1,35 +1,24 @@
-######## INSTALL ########
+# SteamCMD - Windows Core Server
+#
+# https://raw.githubusercontent.com/thelamescriptkiddiemax/GameServer/master/Docker/Windows/SteamCMD/dockerfile
+# https://hub.docker.com/r/dockrbyter/steamcmd
+#
+#-----------------------------------------------------------------------------------------------------------------------------------------------------------
 
-# Set the base image
+# Core Server ltsc2019 / Powershell
 FROM mcr.microsoft.com/windows/servercore:ltsc2019
+SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
-# Set alternative shell
-SHELL ["powershell"]
+#-----------------------------------------------------------------------------------------------------------------------------------------------------------
 
-# Set environment variables
-ENV POWERSHELL_TELEMETRY_OPTOUT 1
-ENV HOME "c:\steamcmd"
+USER ContainerAdministrator
 
-# Create system user
-RUN New-LocalUser -Name "steamcmd" -NoPassword -AccountNeverExpires -UserMayNotChangePassword | Set-LocalUser -PasswordNeverExpires $true
+RUN Set-ExecutionPolicy Unrestricted; \
+    Install-PackageProvider -Name NuGet -Confirm:$False -Force; \
+    Install-Module -Name SteamPS -Scope AllUsers -Confirm:$False -Force; \
+    Install-SteamCMD -Confirm:$False -Force
 
-# Switch to user
-USER steamcmd
+#-----------------------------------------------------------------------------------------------------------------------------------------------------------
 
-# Create SteamCMD directory
-RUN New-Item -ItemType Directory "c:\steamcmd"
-
-# Set SteamCMD working directory
-WORKDIR $HOME
-
-# Download and unpack SteamCMD archive
-RUN Invoke-WebRequest http://media.steampowered.com/installer/steamcmd.zip -O c:\steamcmd\steamcmd.zip; \
-    Expand-Archive c:\steamcmd\steamcmd.zip -DestinationPath c:\steamcmd; \
-    Remove-Item c:\steamcmd\steamcmd.zip
-
-# Update SteamCMD
-RUN c:\steamcmd\steamcmd.exe +quit; exit 0
-
-# Set default command
-ENTRYPOINT c:\steamcmd\steamcmd.exe
-CMD +help +quit
+# Start Server
+CMD  [ "powershell", "-NoExit" ]
